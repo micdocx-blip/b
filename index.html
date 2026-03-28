@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>واجبات باچر ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Tajawal', sans-serif;
+  min-height: 100vh;
+  background: #08080f;
+  color: #fff;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 0 60px;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  background: linear-gradient(160deg,#0a0020 0%,#0d1a3a 60%,#08080f 100%);
+  padding: 36px 20px 44px;
+  text-align: center; position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.hero::before {
+  content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%);
+  width:480px; height:280px;
+  background:radial-gradient(ellipse,rgba(59,130,246,0.2) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-icon { font-size:46px; display:block; margin-bottom:10px; filter:drop-shadow(0 0 18px rgba(59,130,246,0.7)); }
+.hero h1 { font-size:26px; font-weight:900; letter-spacing:2px; background:linear-gradient(90deg,#60a5fa,#818cf8,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero p { color:#4b5563; font-size:13px; margin-top:5px; }
+
+/* TABS */
+.tabs { width:100%; max-width:560px; padding:18px 16px 0; display:flex; gap:6px; flex-wrap:wrap; justify-content:center; }
+.tab { padding:7px 13px; border-radius:30px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); color:#6b7280; font-size:12px; font-weight:700; cursor:pointer; font-family:'Tajawal',sans-serif; transition:all .2s; }
+.tab.on { background:linear-gradient(135deg,#1d4ed8,#3b82f6); color:#fff; border-color:transparent; box-shadow:0 0 14px rgba(59,130,246,0.45); }
+
+/* MAIN */
+.main { width:100%; max-width:560px; padding:16px; }
+.panel { display:none; flex-direction:column; gap:16px; }
+.panel.on { display:flex; }
+
+/* SECTION CARD */
+.sec {
+  background:#0d0d18; border:1px solid #1a1a2e;
+  border-radius:16px; padding:18px;
+  display:flex; flex-direction:column; gap:14px;
+}
+.sec-title {
+  font-size:14px; font-weight:700; color:#60a5fa;
+  display:flex; align-items:center; gap:8px;
+}
+.sec-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,#1e3a5f,transparent); }
+
+/* INPUTS */
+label { font-size:13px; color:#9ca3af; display:block; margin-bottom:5px; }
+input, select, textarea {
+  width:100%; padding:11px 14px;
+  background:#111120; border:1px solid #1f1f35;
+  border-radius:12px; color:#e5e7eb;
+  font-size:14px; font-family:'Tajawal',sans-serif;
+  outline:none; transition:border-color .2s,box-shadow .2s; direction:rtl;
+}
+input:focus, select:focus, textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,0.12); }
+textarea { resize:vertical; min-height:72px; line-height:1.7; }
+select option { background:#111120; }
+
+.g4 { display:grid; grid-template-columns:70px 1fr 60px 90px; gap:8px; }
+.g3 { display:grid; grid-template-columns:80px 1fr 80px; gap:10px; }
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+/* LESSON ROW */
+.les-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.les-num { min-width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,#1d4ed8,#3b82f6); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; flex-shrink:0; }
+
+/* REPEAT CARDS */
+.rep { background:#111120; border:1px solid #1f1f35; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:10px; margin-bottom:10px; }
+.rep-hdr { display:flex; justify-content:space-between; align-items:center; }
+.rep-lbl { font-size:13px; color:#60a5fa; font-weight:700; }
+.del { background:rgba(239,68,68,0.1); color:#f87171; border:none; border-radius:8px; padding:4px 10px; cursor:pointer; font-size:12px; font-family:'Tajawal',sans-serif; }
+
+.add-btn { padding:12px; border-radius:12px; border:2px dashed #1e3a5f; background:transparent; color:#4b5563; cursor:pointer; font-size:14px; font-weight:700; font-family:'Tajawal',sans-serif; transition:all .2s; width:100%; }
+.add-btn:hover { border-color:#3b82f6; color:#60a5fa; background:rgba(59,130,246,0.06); }
+
+/* NAV */
+.nav { display:flex; justify-content:space-between; gap:10px; margin-top:4px; }
+.btn-p { padding:11px 20px; border-radius:12px; border:1px solid #1f1f35; background:#111120; color:#9ca3af; font-size:14px; font-weight:700; cursor:pointer; font-family:'Tajawal',sans-serif; transition:.2s; }
+.btn-p:hover { border-color:#3b82f6; color:#60a5fa; }
+.btn-n { padding:11px 24px; border-radius:12px; border:none; background:linear-gradient(135deg,#1d4ed8,#3b82f6); color:#fff; font-size:14px; font-weight:700; cursor:pointer; font-family:'Tajawal',sans-serif; box-shadow:0 4px 18px rgba(59,130,246,0.35); transition:.2s; margin-right:auto; }
+.btn-n:hover { box-shadow:0 4px 26px rgba(59,130,246,0.55); transform:translateY(-1px); }
+
+/* RESULT */
+.res-box {
+  background:#08080f; border:1px solid #1a1a2e; border-radius:14px; padding:20px;
+  font-size:14px; line-height:2; white-space:pre-wrap; word-break:break-word;
+  max-height:420px; overflow-y:auto; direction:rtl; text-align:right; color:#d1d5db;
+  scrollbar-width:thin; scrollbar-color:#1e3a5f transparent;
+  font-family:'Tajawal', sans-serif; letter-spacing:0;
+}
+.copy-btn {
+  width:100%; padding:14px; margin-top:14px; border-radius:14px; border:none; cursor:pointer;
+  font-size:16px; font-weight:900; letter-spacing:1px; font-family:'Tajawal',sans-serif;
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6); color:#fff;
+  box-shadow:0 6px 22px rgba(59,130,246,0.4); transition:all .3s;
+}
+.copy-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,0.55); }
+.copy-btn.done { background:linear-gradient(135deg,#059669,#10b981); box-shadow:0 6px 22px rgba(16,185,129,0.4); }
+
+/* منصب */
+.role-row { display:flex; align-items:center; gap:10px; }
+.role-lbl { min-width:60px; font-size:13px; color:#6b7280; }
+
+/* SUBJECT PICKER */
+.subj-grid { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:8px; }
+.subj-btn {
+  padding:6px 12px; border-radius:20px; border:1px solid #1f1f35;
+  background:#111120; color:#9ca3af; font-size:12px; font-weight:600;
+  cursor:pointer; font-family:'Tajawal',sans-serif; transition:all .18s;
+  white-space:nowrap;
+}
+.subj-btn:hover { border-color:#3b82f6; color:#60a5fa; background:rgba(59,130,246,0.08); }
+.subj-btn.picked { background:linear-gradient(135deg,#1d4ed8,#3b82f6); color:#fff; border-color:transparent; box-shadow:0 0 10px rgba(59,130,246,0.35); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-icon">📘</span>
+  <h1>واجبات باچر</h1>
+  <p>أنشئ منشورك اليومي بسهولة ✨</p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="main">
+
+  <!-- 0: التاريخ -->
+  <div class="panel on" id="p0">
+    <div class="sec">
+      <div class="sec-title">📅 اليوم</div>
+      <div><label>اليوم</label>
+        <select id="day">
+          <option>الأحد</option><option>الاثنين</option><option>الثلاثاء</option>
+          <option selected>الأربعاء</option><option>الخميس</option><option>الجمعة</option><option>السبت</option>
+        </select>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-title">🗓 التاريخ الميلادي</div>
+      <div class="g4">
+        <div><label>اليوم</label><input id="gd" value="4"/></div>
+        <div><label>الشهر</label>
+          <select id="gm">
+            <option>يناير</option><option>فبراير</option><option selected>مارس</option><option>أبريل</option>
+            <option>مايو</option><option>يونيو</option><option>يوليو</option><option>أغسطس</option>
+            <option>سبتمبر</option><option>أكتوبر</option><option>نوفمبر</option><option>ديسمبر</option>
+          </select>
+        </div>
+        <div><label>الفصل</label><input id="gs" value="3"/></div>
+        <div><label>السنة</label><input id="gy" value="2026"/></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-title">🌙 التاريخ الهجري</div>
+      <div class="g3">
+        <div><label>اليوم</label><input id="hd" value="14"/></div>
+        <div><label>الشهر</label>
+          <select id="hm">
+            <option>محرم</option><option>صفر</option><option>ربيع الأول</option><option>ربيع الثاني</option>
+            <option>جمادى الأولى</option><option>جمادى الثانية</option><option>رجب</option><option>شعبان</option>
+            <option selected>رمضان</option><option>شوال</option><option>ذو القعدة</option><option>ذو الحجة</option>
+          </select>
+        </div>
+        <div><label>السنة</label><input id="hy" value="1447"/></div>
+      </div>
+    </div>
+    <div class="nav"><button class="btn-n" onclick="go(1)">التالي ←</button></div>
+  </div>
+
+  <!-- 1: الجدول -->
+  <div class="panel" id="p1">
+    <div class="sec">
+      <div class="sec-title">📚 الجدول اليومي</div>
+      <div id="les"></div>
+    </div>
+    <div class="nav">
+      <button class="btn-p" onclick="go(0)">→ السابق</button>
+      <button class="btn-n" onclick="go(2)">التالي ←</button>
+    </div>
+  </div>
+
+  <!-- 2: الواجبات -->
+  <div class="panel" id="p2">
+    <div class="sec">
+      <div class="sec-title">📝 الواجبات</div>
+      <div id="hw"></div>
+      <button class="add-btn" onclick="addRep('hw')">＋ إضافة واجب</button>
+    </div>
+    <div class="nav">
+      <button class="btn-p" onclick="go(1)">→ السابق</button>
+      <button class="btn-n" onclick="go(3)">التالي ←</button>
+    </div>
+  </div>
+
+  <!-- 3: الامتحانات -->
+  <div class="panel" id="p3">
+    <div class="sec">
+      <div class="sec-title">📋 الامتحانات</div>
+      <div id="ex"></div>
+      <button class="add-btn" onclick="addRep('ex')">＋ إضافة امتحان</button>
+    </div>
+    <div class="nav">
+      <button class="btn-p" onclick="go(2)">→ السابق</button>
+      <button class="btn-n" onclick="go(4)">التالي ←</button>
+    </div>
+  </div>
+
+  <!-- 4: معلومات الكاتب -->
+  <div class="panel" id="p4">
+    <div class="sec">
+      <div class="sec-title">✍️ معلومات الكاتب</div>
+      <div><label>الاسم</label><input id="auAr" value="رضا محمد"/></div>
+      <div><label>المنصب / اللقب</label><input id="role" value="المشرف الأول"/></div>
+      <div><label>رابط التواصل (البوت)</label><input id="bot" value="@MSG_Redabot"/></div>
+    </div>
+    <div class="nav">
+      <button class="btn-p" onclick="go(3)">→ السابق</button>
+      <button class="btn-n" onclick="go(5)">عرض المنشور ✨</button>
+    </div>
+  </div>
+
+  <!-- 5: النتيجة -->
+  <div class="panel" id="p5">
+    <div class="sec">
+      <div class="sec-title">📤 المنشور الجاهز</div>
+      <pre class="res-box" id="res"></pre>
+      <button class="copy-btn" id="cpBtn" onclick="doCopy()">📋 انسخ المنشور</button>
+    </div>
+    <div class="nav">
+      <button class="btn-p" onclick="go(4)">→ تعديل</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const TABS=["📅 التاريخ","📚 الجدول","📝 الواجبات","📋 الامتحانات","✍️ الكاتب","📤 النتيجة"];
+const LN=["الأول","الثاني","الثالث","الرابع","الخامس","السادس","السابع","الثامن"];
+let cur=0, hwN=0, exN=0;
+
+// Tabs
+const tc=document.getElementById('tabs');
+TABS.forEach((t,i)=>{
+  const b=document.createElement('button');
+  b.className='tab'+(i===0?' on':'');
+  b.textContent=t; b.id='tab'+i;
+  b.onclick=()=>go(i); tc.appendChild(b);
+});
+
+const SUBJECTS=['التربية الإسلامية','اللغة العربية','اللغة الإنجليزية','الرياضيات','الكيمياء','علم الأحياء','الفيزياء','الرياضة','التربية الفنية','جرائم حزب البعث البائد'];
+
+function subjectPickerHTML(inputId){
+  const btns = SUBJECTS.map(s=>`<button type="button" class="subj-btn" onclick="pickSubj('${inputId}',this,'${s}')">${s}</button>`).join('');
+  return `<div class="subj-grid">${btns}</div>`;
+}
+
+function pickSubj(inputId, btn, val){
+  const input = document.getElementById(inputId);
+  // toggle off if already picked
+  if(input.value === val){
+    input.value='';
+    btn.classList.remove('picked');
+    return;
+  }
+  input.value = val;
+  // deselect siblings
+  const grid = btn.closest('.subj-grid');
+  grid.querySelectorAll('.subj-btn').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
+}
+
+// Lessons
+const lc=document.getElementById('les');
+for(let i=0;i<8;i++){
+  const r=document.createElement('div');
+  r.style.marginBottom='14px';
+  r.style.borderBottom='1px solid #1a1a2e';
+  r.style.paddingBottom='14px';
+  r.innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div class="les-num">${i+1}</div>
+      <span style="font-size:13px;color:#6b7280;">الدرس ${LN[i]}</span>
+    </div>
+    ${subjectPickerHTML('l'+i)}
+    <input id="l${i}" placeholder="أو اكتب المادة يدوياً..." style="margin-top:4px;"/>`;
+  lc.appendChild(r);
+}
+
+// Repeatable items
+function addRep(type){
+  const wrap=document.getElementById(type);
+  const n=type==='hw'?++hwN:++exN;
+  const lbl=type==='hw'?'واجب':'امتحان';
+  const num=wrap.children.length+1;
+  const ph2=type==='hw'?'مثال: تحضير':'مثال: الفصل الرابع';
+  const ph3=type==='hw'?'تفاصيل الواجب... مثال: من ص١٠٠ الى ١٠٩':'تفاصيل الامتحان... مثال: الدفتر فقط';
+  const d=document.createElement('div');
+  d.className='rep'; d.id=type+n;
+  const subjBtns = SUBJECTS.map(s=>`<button type="button" class="subj-btn" onclick="pickSubj('${type}S${n}',this,'${s}')">${s}</button>`).join('');
+  d.innerHTML=`<div class="rep-hdr">
+    <span class="rep-lbl">${lbl} ${num}</span>
+    <button class="del" onclick="document.getElementById('${type+n}').remove();renum('${type}')">حذف</button>
+  </div>
+  <div>
+    <label style="font-size:12px;color:#6b7280;margin-bottom:6px;display:block;">📌 اختر المادة</label>
+    <div class="subj-grid">${subjBtns}</div>
+    <input placeholder="أو اكتب المادة يدوياً..." id="${type}S${n}" style="margin-top:4px;"/>
+  </div>
+  <div style="margin-top:10px;">
+    <label style="font-size:12px;color:#6b7280;margin-bottom:5px;display:block;">📎 العنوان</label>
+    <input placeholder="${ph2}" id="${type}T${n}"/>
+  </div>
+  <div style="margin-top:10px;">
+    <label style="font-size:12px;color:#6b7280;margin-bottom:5px;display:block;">📝 الوصف والتفاصيل</label>
+    <textarea placeholder="${ph3}" id="${type}D${n}"></textarea>
+  </div>`;
+  wrap.appendChild(d);
+}
+function renum(t){
+  const l=t==='hw'?'واجب':'امتحان';
+  document.querySelectorAll(`#${t} .rep-lbl`).forEach((el,i)=>el.textContent=`${l} ${i+1}`);
+}
+addRep('hw'); addRep('ex');
+
+// Navigate
+function go(n){
+  document.getElementById('p'+cur).classList.remove('on');
+  document.getElementById('tab'+cur).classList.remove('on');
+  cur=n;
+  document.getElementById('p'+cur).classList.add('on');
+  document.getElementById('tab'+cur).classList.add('on');
+  if(cur===5) build();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toAr(s){ return String(s).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]); }
+
+function padAr(s, len){
+  // pad with spaces on left to reach desired length (for alignment)
+  const str = toAr(s);
+  const spaces = len - str.length;
+  return ' '.repeat(Math.max(0, spaces)) + str;
+}
+
+function build(){
+  const LINE='••••••••••••••••••••••••••••••••••••••••';
+  const day=document.getElementById('day').value;
+  const gd=document.getElementById('gd').value.trim();
+  const gm=document.getElementById('gm').value.trim();
+  const gs=document.getElementById('gs').value.trim();
+  const gy=document.getElementById('gy').value.trim();
+  const hd=document.getElementById('hd').value.trim();
+  const hm=document.getElementById('hm').value.trim();
+  const hy=document.getElementById('hy').value.trim();
+  const auAr=document.getElementById('auAr').value;
+  const role=document.getElementById('role').value;
+  const bot=document.getElementById('bot').value;
+
+  // Alignment: الـ / تحت بعض بدقة
+  const gdAr=toAr(gd), hdAr=toAr(hd);
+  const gmTxt=gm;
+  const hmTxt='شهر '+hm;
+
+  // نحسب الفرق في طول الشهرين ونعوضه بمسافات
+  const monthDiff = Math.abs(gmTxt.length - hmTxt.length);
+  const spaces = '\u00A0'.repeat(monthDiff); // non-breaking spaces
+
+  let gmPad, hmPad;
+  if(gmTxt.length < hmTxt.length){
+    gmPad = gmTxt + spaces;
+    hmPad = hmTxt;
+  } else {
+    gmPad = gmTxt;
+    hmPad = hmTxt + spaces;
+  }
+
+  // نحسب الفرق في طول رقم اليوم
+  const dayDiff = Math.abs(gdAr.length - hdAr.length);
+  const daySpaces = '\u00A0'.repeat(dayDiff);
+  let gdP, hdP;
+  if(gdAr.length < hdAr.length){
+    gdP = '\u00A0'.repeat(dayDiff) + gdAr;
+    hdP = hdAr;
+  } else {
+    gdP = gdAr;
+    hdP = '\u00A0'.repeat(dayDiff) + hdAr;
+  }
+
+  const line1=`بـ تاريخ :   ${gdP}  /  ${gmPad}  ( ${toAr(gs)} )  /  ${toAr(gy)} ( م )`;
+  const line2=`الموافق  :   ${hdP}  /  ${hmPad}  /  ${toAr(hy)} ( هـ )`;
+
+  // Lessons
+  let lesLines=[];
+  for(let i=0;i<8;i++){
+    const v=(document.getElementById('l'+i)?.value||'').trim();
+    if(v) lesLines.push(`✳️ الدرس ${LN[i]} ✳️  : ${v}`);
+  }
+
+  // Homework
+  let hwLines=[];
+  document.querySelectorAll('#hw .rep').forEach((c,i)=>{
+    const inputs=c.querySelectorAll('input');
+    const s=(inputs[0]?.value||'').trim();
+    const t=(inputs[1]?.value||'').trim();
+    const d=(c.querySelector('textarea')?.value||'').trim();
+    if(s){
+      let line=`${i+1} ) ${s}`;
+      if(t) line+=` : ${t}`;
+      if(d) line+=`\n\n${d}`;
+      hwLines.push(line);
+    }
+  });
+
+  // Exams
+  let exLines=[];
+  document.querySelectorAll('#ex .rep').forEach((c,i)=>{
+    const inputs=c.querySelectorAll('input');
+    const s=(inputs[0]?.value||'').trim();
+    const t=(inputs[1]?.value||'').trim();
+    const d=(c.querySelector('textarea')?.value||'').trim();
+    if(s){
+      let line=`${i+1} ) ${s}`;
+      if(t) line+=` : ${t}`;
+      if(d) line+=`\n\n${d}`;
+      exLines.push(line);
+    }
+  });
+
+  const txt=
+`#واجبات_باچر 
+${LINE}
+يوم : ${day} 
+${line1}
+${line2}
+${LINE}
+
+#جدول_يوم_${day} 
+
+🔵 يوم ${day} 🔵
+
+${lesLines.length ? lesLines.join('\n\n') : '✳️ لا يوجد جدول ✳️'}
+
+${LINE}
+
+#الواجبات
+
+${hwLines.length ? hwLines.join('\n\n') : 'لا يوجد واجبات'}
+
+${LINE}
+
+#الإمتحانات 
+
+${exLines.length ? exLines.join('\n\n') : 'لا يوجد امتحانات'}
+
+${LINE}
+
+#واجبات_باچر #قسم_الإعلام
+
+بـ واسطة : ${auAr} 
+${role} 
+
+للتواصل عبر البوت : ${bot}
+${LINE}`;
+
+  document.getElementById('res').textContent=txt;
+}
+
+function doCopy(){
+  const txt=document.getElementById('res').textContent;
+  const btn=document.getElementById('cpBtn');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(()=>ok(btn)).catch(()=>fallback(txt,btn));
+  } else { fallback(txt,btn); }
+}
+function fallback(txt,btn){
+  const ta=document.createElement('textarea');
+  ta.value=txt; ta.style.cssText='position:fixed;top:0;left:0;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{ document.execCommand('copy'); ok(btn); } catch(e){ alert('انسخ يدوياً'); }
+  document.body.removeChild(ta);
+}
+function ok(btn){
+  btn.textContent='✅ تم النسخ بنجاح!'; btn.classList.add('done');
+  setTimeout(()=>{ btn.textContent='📋 انسخ المنشور'; btn.classList.remove('done'); },2500);
+}
+</script>
+</body>
+</html>
